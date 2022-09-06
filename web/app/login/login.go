@@ -27,12 +27,7 @@ func Handler(auth *authenticator.Authenticator) gin.HandlerFunc {
 			return
 		}
 
-		// doing this you can't handle redict on frontend manually
-		// ctx.Redirect(http.StatusTemporaryRedirect, auth.AuthCodeURL(state))
-
-		ctx.JSON(http.StatusOK, gin.H{
-			"url": auth.AuthCodeURL(state),
-		})
+		ctx.Redirect(http.StatusTemporaryRedirect, auth.AuthCodeURL(state))
 	}
 }
 
